@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Streaming Client</title>
+    <link rel="stylesheet" href="styles/styles.css?v=1.1">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(registration => {
+              console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(error => {
+              console.error('Service Worker registration failed:', error);
+            });
+        } else {
+          console.error("Service workers are not supported.");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="video-name" placeholder="Enter video name (e.g., video2)">
+        <select id="video-resolution">
+          <option value="144p">144p</option>
+          <option value="240p">240p</option>
+          <option value="360p">360p</option>
+          <option value="480p">480p</option>
+          <option value="720p" selected>720p</option>
+        </select>
+        <button onclick="loadVideo()">Load Video</button>
+        <video id="video-player" autoplay controls></video>
+    </div>
+    <script src="scripts/main.js?v=1.5"></script>
+</body>
+</html>
